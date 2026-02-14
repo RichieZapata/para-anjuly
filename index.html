@@ -9,68 +9,59 @@
   <title>Para Anjuly ❤️</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <main class="card" id="card">
 
-    <section class="intro" id="intro">
-      <button class="heart-btn" id="startBtn" aria-label="Iniciar">❤️</button>
-      <p class="hint">Toca el corazón</p>
-    </section>
+<main class="card">
 
-    <section class="scene hidden" id="scene">
-      <div class="sky"></div>
-      <div class="ground"></div>
+  <section class="intro" id="intro">
+    <button class="heart-btn" id="startBtn" aria-label="Iniciar">❤️</button>
+    <p class="hint">Toca el corazón</p>
+  </section>
 
-      <div class="tree-wrap" id="tree">
-        <div class="trunk" id="trunk"></div>
-        <div class="branch b1" id="b1"></div>
-        <div class="branch b2" id="b2"></div>
-        <div class="branch b3" id="b3"></div>
+  <section class="scene hidden" id="scene">
+    <!-- capa para confeti (no bloquea clicks) -->
+    <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
 
-        <!-- Copa del árbol (hojas/corazones) -->
-        <div class="canopy" id="canopy"></div>
+    <section class="note" id="note">
+      <h2>Para Anjuly…</h2>
+
+      <p>
+        Desde el 28 de octubre de 2008,
+        la vida me enseñó algo sencillo:
+        que el amor sí existe cuando eres tú.
+      </p>
+
+      <p>
+        No necesito prometer perfección.
+        Solo prometo elegirte en lo cotidiano,
+        en lo simple, en lo real…
+        una y otra vez.
+      </p>
+
+      <p class="since">Mi amor por ti comenzó hace…</p>
+      <p class="counter" id="counter"></p>
+
+      <button class="letter-btn" id="openLetter">
+        Abrir carta 💌
+      </button>
+
+      <div class="letter hidden" id="letter">
+        <p>
+          Anjuly, gracias por ser mi lugar seguro.
+          Por tu paciencia, tu forma de mirar,
+          y por todo lo que hemos construido.
+          Contigo, la vida se siente bien.
+        </p>
+
+        <p class="sign">
+          — Te elijo, siempre. ❤️
+        </p>
       </div>
-
-      <!-- Corazones que caen (confetti) -->
-      <div class="hearts-layer" id="heartsLayer"></div>
-
-      <section class="note hidden" id="note">
-        <h2>Para Anjuly…</h2>
-
-        <p>
-          Desde el 28 de octubre de 2008,
-          la vida me enseñó algo sencillo:
-          que el amor sí existe cuando eres tú.
-        </p>
-
-        <p>
-          No necesito prometer perfección.
-          Solo prometo elegirte en lo cotidiano,
-          en lo simple, en lo real…
-          una y otra vez.
-        </p>
-
-        <p class="since">Mi amor por ti comenzó hace…</p>
-        <p class="counter" id="counter"></p>
-
-        <button class="letter-btn" id="openLetter">Abrir carta 💌</button>
-
-        <div class="letter hidden" id="letter">
-          <p>
-            Anjuly, gracias por ser mi lugar seguro.
-            Por tu paciencia, tu forma de mirar,
-            y por todo lo que hemos construido.
-            Contigo, la vida se siente bien.
-          </p>
-
-          <p class="sign">— Te elijo, siempre. ❤️</p>
-        </div>
-      </section>
     </section>
+  </section>
 
-  </main>
+</main>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
