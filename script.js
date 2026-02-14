@@ -40,13 +40,11 @@ function growTree() {
   setTimeout(() => { b3.style.height = "115px"; b3.style.opacity = 1; }, 1000);
 }
 
-if (openLetter && letter) {
-  openLetter.addEventListener("click", () => {
-    openLetter.classList.add("hidden");
-    letter.classList.remove("hidden");
-    confettiHearts(3000);
-  }, { once: true });
-}
+openLetter.addEventListener("click", () => {
+  openLetter.classList.add("hidden");
+  letter.classList.remove("hidden");
+  confettiHearts(2600);
+}, { once: true });
 
 function startCounter(dateISO) {
   const start = new Date(dateISO);
@@ -92,14 +90,15 @@ function confettiHearts(ms) {
   }, 90);
 }
 
-/* Copa del árbol (hojas en forma de corazón) */
+/* ✅ Copa con hojas corazón (forma corazón real) */
 function drawHeartCanopy() {
-  // centro aproximado de la copa
-  const baseX = scene.clientWidth * 0.62;
-  const baseY = scene.clientHeight * 0.34;
+  const isMobile = window.innerWidth <= 520;
+
+  const baseX = scene.clientWidth * (isMobile ? 0.76 : 0.62);
+  const baseY = scene.clientHeight * (isMobile ? 0.28 : 0.34);
 
   const colors = ["#e63946", "#ff6b6b", "#ffb4c0"];
-  const total = 190;
+  const total = isMobile ? 140 : 190;
 
   for (let i = 0; i < total; i++) {
     setTimeout(() => {
@@ -107,22 +106,21 @@ function drawHeartCanopy() {
       leaf.className = "leaf";
       leaf.textContent = "❤";
 
+      // corazón paramétrico
       const t = Math.random() * Math.PI * 2;
       const r = Math.random();
 
-      // corazón paramétrico
-      const x = (16 * Math.pow(Math.sin(t), 3)) * 5.2;
-      const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 5.2;
+      const x = (16 * Math.pow(Math.sin(t), 3)) * (isMobile ? 4.2 : 5.2);
+      const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * (isMobile ? 4.2 : 5.2);
 
-      const jitterX = (Math.random() - 0.5) * 24;
-      const jitterY = (Math.random() - 0.5) * 24;
+      const jitterX = (Math.random() - 0.5) * (isMobile ? 18 : 24);
+      const jitterY = (Math.random() - 0.5) * (isMobile ? 18 : 24);
 
       leaf.style.left = `${baseX + (x * r) + jitterX}px`;
       leaf.style.top  = `${baseY + (y * r) + jitterY}px`;
 
       leaf.style.color = colors[Math.floor(Math.random() * colors.length)];
-      leaf.style.fontSize = `${10 + Math.random() * 16}px`;
-      leaf.style.transform = "translate(-50%, -50%) scale(.6)";
+      leaf.style.fontSize = `${10 + Math.random() * (isMobile ? 12 : 16)}px`;
       leaf.style.animationDelay = `${Math.random() * 0.35}s`;
 
       heartsLayer.appendChild(leaf);
