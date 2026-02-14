@@ -2,14 +2,16 @@
   --bg: #f3e7d9;
   --paper: #fff7ec;
   --ink: #2a2a2a;
-  --line: #121212;
+  --line: rgba(18,18,18,.55);
   --trunk: #7a4a2c;
+  --shadow: rgba(0,0,0,.14);
+
   --heart1: #e63946;
   --heart2: #ff6b6b;
   --heart3: #ffb4c0;
 }
 
-*{ box-sizing:border-box; }
+*{ box-sizing: border-box; }
 
 body{
   margin:0;
@@ -25,129 +27,83 @@ body{
 
 .card{
   width:min(860px, 92vw);
+  height:min(560px, 78vh);
   background: var(--paper);
   border-radius: 26px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 25px 60px rgba(0,0,0,.18);
-  min-height: 520px;
 }
 
 .hidden{ display:none !important; }
 
+/* Intro */
 .intro{
-  min-height: 520px;
+  height:100%;
   display:grid;
   place-items:center;
   gap:10px;
 }
 
 .heart-btn{
-  font-size: clamp(44px, 10vw, 72px);
+  font-size: clamp(44px, 7vw, 72px);
   background: transparent;
   border: 0;
   cursor: pointer;
   transition: transform .25s ease;
 }
 .heart-btn:hover{ transform: scale(1.12); }
-
 .hint{ opacity:.75; }
 
+/* Scene */
 .scene{
   position: relative;
-  min-height: 520px;
+  height:100%;
   padding: 24px;
 }
 
-.sky{
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle at 30% 20%, #fff, #fff3ea 45%, #ffe9f2);
-  z-index: 0;
-}
-
+/* Ground line (atrás, no tapa texto) */
 .ground{
   position:absolute;
   left:0;
   right:0;
-  bottom:70px;
+  bottom:84px;
   height:2px;
   background: var(--line);
-  opacity:.35;
-  z-index: 2;
+  z-index: 0;
 }
 
-.tree-wrap{
-  position:absolute;
-  left: 66%;
-  bottom: 70px;
-  width: 260px;
-  height: 340px;
-  transform: translateX(-50%);
-  z-index: 3;
-}
-
-.trunk{
-  position:absolute;
-  bottom:0;
-  left: 50%;
-  width: 16px;
-  height: 0px;
-  background: var(--trunk);
-  border-radius: 12px;
-  transform: translateX(-50%);
-  transition: height 1.6s ease;
-}
-
-.branch{
-  position:absolute;
-  left: 50%;
-  bottom: 120px;
-  width: 10px;
-  height: 0px;
-  background: var(--trunk);
-  border-radius: 12px;
-  transform-origin: bottom;
-  opacity: 0;
-  transition: height 1s ease, opacity .3s ease;
-}
-
-.b1{ transform: translateX(-50%) rotate(-25deg); bottom: 150px; }
-.b2{ transform: translateX(-50%) rotate(10deg);  bottom: 170px; }
-.b3{ transform: translateX(-50%) rotate(35deg);  bottom: 140px; }
-
+/* Note (encima) */
 .note{
-  position: relative;
-  z-index: 4;
-  width: min(460px, 60vw);
+  position:absolute;
+  left: 24px;
+  bottom: 18px;
+  width: min(380px, 52vw);
   line-height: 1.45;
-  padding-bottom: 86px;
-  animation: fadeUp .6s ease both;
+  z-index: 5;
 }
 
-.note h2{ margin:0 0 10px; }
-
-.since{
-  margin-top: 14px;
-  opacity: .85;
+.note h2{
+  margin:0 0 10px;
+  font-size: clamp(22px, 3.2vw, 34px);
 }
 
 .counter{
-  font-weight: 900;
+  font-weight: 800;
   margin:10px 0 8px;
-  font-size: clamp(16px, 2.8vw, 22px);
-  line-height: 1.2;
-  max-width: 32ch;
+  font-size: clamp(18px, 2.4vw, 24px);
 }
+
+.since{ margin-top: 16px; opacity: .85; }
 
 .letter-btn{
   margin-top: 10px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   border-radius: 14px;
   border: 1px solid rgba(0,0,0,.15);
   background: #fff;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 700;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 .letter-btn:hover{
@@ -157,82 +113,149 @@ body{
 
 .letter{
   margin-top: 12px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,.75);
+  padding: 14px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.78);
   border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 14px 30px rgba(0,0,0,.10);
 }
 
-.sign{
-  margin-top: 10px;
-  font-weight: 800;
-}
+.sign{ margin-top: 10px; font-weight: 800; }
 
-/* capa de elementos */
-.hearts-layer{
+/* Tree */
+.tree-wrap{
   position:absolute;
-  inset:0;
+  left: 64%;
+  bottom: 84px;
+  width: 280px;
+  height: 360px;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.trunk{
+  position:absolute;
+  bottom:0;
+  left: 50%;
+  width: 18px;
+  height: 0px;
+  background: var(--trunk);
+  border-radius: 14px;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.branch{
+  position:absolute;
+  left: 50%;
+  width: 12px;
+  height: 0px;
+  background: var(--trunk);
+  border-radius: 14px;
+  transform-origin: bottom;
+  opacity: 0;
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.b1{ transform: translateX(-50%) rotate(-25deg); bottom: 165px; }
+.b2{ transform: translateX(-50%) rotate(12deg);  bottom: 182px; }
+.b3{ transform: translateX(-50%) rotate(35deg);  bottom: 155px; }
+
+/* Canopy */
+.canopy{
+  position:absolute;
+  left: 50%;
+  top: 12px;
+  width: 260px;
+  height: 230px;
+  transform: translateX(-50%);
   pointer-events:none;
-  z-index: 5;
+  transition: opacity .35s ease;
 }
 
-/* confeti */
-.heart{
-  position:absolute;
-}
-
-@keyframes fall{
-  to{ transform: translateY(680px); opacity: 0; }
-}
-.falling{ animation: fall linear forwards; }
-
-/* hojas */
 .leaf{
   position:absolute;
   transform: translate(-50%, -50%) scale(.6);
   opacity: 0;
-  animation: leafIn .7s ease forwards;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,.10));
+  filter: drop-shadow(0 10px 12px rgba(0,0,0,.12));
+  animation: pop .6s ease forwards;
 }
 
-@keyframes leafIn{
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.leaf::before{
+  content: "❤";
+  display:block;
+  font-size: var(--size, 18px);
+  color: var(--c, var(--heart1));
 }
 
-@keyframes fadeUp{
-  from{ opacity:0; transform: translateY(10px); }
-  to{ opacity:1; transform: translateY(0); }
+@keyframes pop{
+  to{ opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
-/* ✅ MOBILE */
-@media (max-width: 520px){
+/* Confetti */
+.hearts-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 4;
+}
 
-  .card{
-    width: 92vw;
-    min-height: 78svh;
-    border-radius: 22px;
+.heart{
+  position:absolute;
+  transform: translate(-50%, 0);
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,.10));
+}
+
+@keyframes fall{
+  to{
+    transform: translate(-50%, 520px) rotate(18deg);
+    opacity: 0;
   }
+}
 
-  .intro{ min-height: 78svh; }
+.falling{
+  animation: fall linear forwards;
+}
+
+/* Letter mode (Opción B: ocultar árbol al abrir carta) */
+.card.letter-open .tree-wrap{
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px) scale(.98);
+}
+.card.letter-open .canopy{
+  opacity: 0;
+}
+
+/* Mobile tweaks */
+@media (max-width: 520px){
+  .card{
+    height: min(720px, 86vh);
+  }
 
   .scene{
-    min-height: 78svh;
-    padding: 18px;
-  }
-
-  .ground{ bottom: 86px; }
-
-  .tree-wrap{
-    left: 75%;
-    bottom: 78px;
-    width: 190px;
-    height: 280px;
-    opacity: .95;
+    padding: 16px;
   }
 
   .note{
-    width: 100%;
-    padding-right: 120px;
-    padding-bottom: 96px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    bottom: 16px;
+  }
+
+  .tree-wrap{
+    left: 72%;
+    width: 240px;
+    height: 340px;
+  }
+
+  .ground{
+    bottom: 110px; /* baja la línea para no cruzar texto en iPhone */
+  }
+
+  .letter{
+    max-height: 220px;
+    overflow: auto;
   }
 }

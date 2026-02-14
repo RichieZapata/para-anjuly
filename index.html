@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <main class="card">
+  <main class="card" id="card">
 
     <section class="intro" id="intro">
       <button class="heart-btn" id="startBtn" aria-label="Iniciar">❤️</button>
@@ -22,14 +22,18 @@
       <div class="sky"></div>
       <div class="ground"></div>
 
-      <div class="tree-wrap" aria-hidden="true">
+      <div class="tree-wrap" id="tree">
         <div class="trunk" id="trunk"></div>
         <div class="branch b1" id="b1"></div>
         <div class="branch b2" id="b2"></div>
         <div class="branch b3" id="b3"></div>
+
+        <!-- Copa del árbol (hojas/corazones) -->
+        <div class="canopy" id="canopy"></div>
       </div>
 
-      <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+      <!-- Corazones que caen (confetti) -->
+      <div class="hearts-layer" id="heartsLayer"></div>
 
       <section class="note hidden" id="note">
         <h2>Para Anjuly…</h2>
@@ -50,9 +54,7 @@
         <p class="since">Mi amor por ti comenzó hace…</p>
         <p class="counter" id="counter"></p>
 
-        <button class="letter-btn" id="openLetter">
-          Abrir carta 💌
-        </button>
+        <button class="letter-btn" id="openLetter">Abrir carta 💌</button>
 
         <div class="letter hidden" id="letter">
           <p>
